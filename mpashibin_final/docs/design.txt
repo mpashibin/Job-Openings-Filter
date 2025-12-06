@@ -1,0 +1,140 @@
+1) PROBLEM STATEMENT
+
+You are tasked with developing a program that helps users filter 
+down job listings from a collection of job openings. The program will prompt 
+users to enter their preferences for salary, location, and qualifications. The 
+program will need to filter down the results using these preferences to provide 
+a narrowed down list of job openings that match the user's preferences. The 
+program will then display these results to the user.
+        
+2) NOUNS & VERBS 
+	
+	Nouns: job openings, job listings, preferences for salary, location, and qualifications
+
+  Verbs: prompt, filter, display
+
+3) DEFINING DIAGRAM (IPO)
+
+  INPUT: 
+  salary preference
+  location preference
+  qualification preferences
+
+  PROCESSING: 
+  prompt for salary preference
+  prompt for location preference
+  prompt for qualification preferences
+  filter job listings
+  display job openings
+
+  OUTPUT:
+  job openings
+
+4) SOLUTION ALGORITHM (Pseudocode)
+       
+  filterJobListingsForUserPreferences()
+
+    INITIALIZE jobListings to []
+    INITIALIZE filteredJobs to []
+    INITIALIZE salaryPreference to ""
+    INITIALIZE locationPreference to ""
+    INITIALIZE qualificationsPreference to ""
+    INITIALIZE matchesMessage to ""
+    INITIALIZE noMatchesMessage to ""
+    
+
+    SET jobListings to [
+
+      create a Hash Table in an Array to enter jobs for jobListings using this format:
+
+        {
+          "salary": 
+          "location":
+          "qualifications":
+        },
+
+    ]
+
+    
+    PROMPT for salaryPreference using "What is your desired salary per year?"
+
+    convert salaryPreference to a number 
+
+    PROMPT for locationPreference using 
+      "What city would you prefer to work in or near? 
+      (Eau Claire, Menomonie, Chippewa Falls, Remote)"
+
+    PROMPT for qualificationsPreference using 
+      "What is your highest level of education? 
+      (High School, Associate's, Bachelor's, Master's, PHD)"
+
+
+    FOR (job in jobListings) 
+      IF job.salary >= salaryPreference 
+        AND job.location = locationPreference 
+        AND job.qualification = qualificationsPreference
+
+        add job to filteredJobs using push function
+      ENDIF
+    ENDFOR
+
+    SET noMatchesMessage to 
+      "No results were found that matched your preferences. Please try again."
+
+    SET matchesMessage to 
+      "Here are the results we found for you matching your preferences:" + "\n\n"
+
+    IF filteredJobs.length > 0
+      DISPLAY matchesMessage
+      DISPLAY filteredJobs
+    ELSEIF filteredJobs = 0
+      DISPLAY noMatchesMessage
+    ENDIF
+
+  END
+
+5) TEST CASES
+
+  VARIABLES: 
+  jobListings, filteredJobs, salaryPreference, locationPreference, 
+  qualificationsPreference, matchesMessage, noMatchesMessage 
+
+  TEST CASE 1:
+  INPUT VALUES:
+  1000000, remote, none
+
+  YOUR EXPECTED RESULT:
+  No results were found that matched your preferences. Please try again.
+
+
+  TEST CASE 2:
+  INPUT VALUES: 
+  30000, Eau Claire, Master's
+
+  YOUR EXPECTED RESULT:
+  Here are the results we found for you matching your preferences: 
+
+  Matching Job 1
+  Matching Job 2
+  Matching Job 3
+  Matching Job 4
+  Matching Job 5
+
+  TEST CASE 3:
+  INPUT VALUES: 
+ 60000, Menomonie, Bachelor's
+
+  YOUR EXPECTED RESULT:
+  Here are the results we found for you matching your preferences:
+
+  Matching Job 1
+
+  TEST CASE 4:
+  INPUT VALUES: 
+  30000, Chippewa Falls, High School 
+
+  YOUR EXPECTED RESULT:
+  Here are the results we found for you matching your preferences:
+
+  Matching Job 1
+  Matching Job 2
